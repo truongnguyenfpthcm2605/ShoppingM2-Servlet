@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="shopping@shopping.cozsr0urv3qm.ap-southeast-1.rds.amazonaws.com" uuid="6d77372a-515f-4107-b84c-e31bfe1aed25">
+
+    <data-source source="LOCAL" name="shopping@shopping.cozsr0urv3qm.ap-southeast-1.rds.amazonaws.com" uuid="64babb33-d922-4545-9ab3-caadd7cd95b0">
+
       <driver-ref>sqlserver.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
       <jdbc-url>jdbc:sqlserver://shopping.cozsr0urv3qm.ap-southeast-1.rds.amazonaws.com:1433;database=shopping</jdbc-url>
+
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+      </jdbc-additional-properties>
+
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
