@@ -1,6 +1,9 @@
 package com.m2m.shopping.entity;
 
-import lombok.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -8,11 +11,13 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Order")
+@Table(name = "Gallery")
 public class Gallery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer productId;
+    @ManyToOne
+    @JoinColumn(name = "productId")
+    private Product product;
     private String thumbnail;
 }
