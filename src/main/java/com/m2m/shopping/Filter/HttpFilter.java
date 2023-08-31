@@ -1,4 +1,4 @@
-package com.m2m.shopping.config;
+package com.m2m.shopping.Filter;
 
 import java.io.IOException;
 
