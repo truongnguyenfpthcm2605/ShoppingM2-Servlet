@@ -1,5 +1,8 @@
 package com.m2m.shopping;
 
+import com.m2m.shopping.utils.JPAService;
+import lombok.RequiredArgsConstructor;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,7 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/hello")
+@RequiredArgsConstructor
 public class HelloServlet extends HttpServlet {
+
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
