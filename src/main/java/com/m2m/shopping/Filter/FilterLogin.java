@@ -11,6 +11,7 @@ public class FilterLogin implements HttpFilter {
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpFilter.super.doFilter(req, res, chain);
+        chain.doFilter(req,res);
 
     }
 }
