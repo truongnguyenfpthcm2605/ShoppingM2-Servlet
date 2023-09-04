@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file = "/common/_taglib.jsp" %>
 
 <html>
@@ -31,19 +31,19 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">List of products</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">List of accounts</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>ID</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
+                                        <th>Fullname</th>
                                         <th>Create Date</th>
-                                        <th>Action</th>
+                                        <th>Office</th>
+                                        <th>Age</th>
+                                        <th>Start date</th>
+                                        <th>Salary</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -53,18 +53,7 @@
                                         <td>Edinburgh</td>
                                         <td>61</td>
                                         <td>2011/04/25</td>
-                                        <td>
-                                            <div class="flex align-items-center justify-content-between">
-                                                <a href="<c:url value='/admin/products?action=view'/>"
-                                                   class="btn text-info">
-                                                    <i class="fas fa-fw fa-pen"></i>
-                                                </a>
-                                                <a href="<c:url value='/admin/products?action=delete'/>"
-                                                   class="btn text-danger">
-                                                    <i class="fas fa-fw fa-trash"></i>
-                                                </a>
-                                            </div>
-                                        </td>
+                                        <td>$320,800</td>
                                     </tr>
                                     <tr>
                                         <td>Garrett Winters</td>
@@ -75,7 +64,7 @@
                                         <td>$170,750</td>
                                     </tr>
                                     <tr>
-                                        <td>Aston Cox</td>
+                                        <td>Ashton Cox</td>
                                         <td>Junior Technical Author</td>
                                         <td>San Francisco</td>
                                         <td>66</td>
@@ -132,6 +121,8 @@
 
     <!-- Logout Modal-->
     <%@ include file = "/common/admin/_logout_modal.jsp" %>
+
     <%@ include file = "/common/admin/_script.jsp" %>
+
 </body>
 </html>
