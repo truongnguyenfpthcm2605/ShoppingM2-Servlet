@@ -20,18 +20,16 @@ public class Product {
     private Double discount;
     private Integer quantity;
     private String img;
-    @Temporal(TemporalType.DATE)
-    @Column( name = "createDate")
-    private Date createDate;
-    @Temporal(TemporalType.DATE)
-    @Column( name = "createUpdate")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate = new Date();
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createUpdate;
     private Integer stockquantity;
     private Integer buyquantity;
     private String description;
     private Boolean isActive;
     @ManyToOne
-    @JoinColumn(name = "idCategories")
+    @JoinColumn(name = "idCategories", referencedColumnName = "id")
     private Categories categories;
     @OneToMany(mappedBy = "product")
     private List<OrderDetails> orderDetails;

@@ -23,10 +23,10 @@ public class Account {
     private String fullname;
     private String address;
     private String phoneNumbers;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createDate")
-    private Date createDate;
-    @Temporal(TemporalType.DATE)
+    private Date createDate = new Date();
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "createUpdate")
     private Date createUpdate;
     private String img;
@@ -37,7 +37,7 @@ public class Account {
     private List<Order> order ;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "User_Role",
-        joinColumns = @JoinColumn(name = "Userid"),inverseJoinColumns = @JoinColumn(name = "roleid"))
+        joinColumns = @JoinColumn(name = "email"),inverseJoinColumns = @JoinColumn(name = "role"))
     private Set<Roles> roleSet = new HashSet<>();
 
 }
