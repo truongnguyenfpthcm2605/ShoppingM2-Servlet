@@ -36,14 +36,15 @@
         <div class="col-lg-6 offset-lg-3">
           <div class="login-form">
             <h2>Đăng Nhập</h2>
-            <form action="#">
+            <i>${error}</i>
+            <form action="./login" method="POST">
               <div class="group-input">
-                <label for="username">Email *</label>
-                <input type="email" id="username">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email">
               </div>
               <div class="group-input">
-                <label for="pass">Mật khẩu *</label>
-                <input type="password" id="pass">
+                <label for="password">Mật khẩu *</label>
+                <input type="password" id="password" name="password">
               </div>
               <div class="group-input gi-check">
                 <div class="gi-more">

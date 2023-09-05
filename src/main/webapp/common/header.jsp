@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: BENTRE-PC
@@ -20,7 +21,15 @@
                 </div>
             </div>
             <div class="ht-right">
-                <a href="./login" class="login-panel"><i class="fa fa-user"></i>Đăng Nhập</a>
+                <c:choose>
+                    <c:when test= "${not empty sessionScope.current}">
+                        <a href="./logout" class="login-panel"><i class="fa fa-user"></i>Đăng Xuất</a>
+                    </c:when>
+                    <c:otherwise>
+                        <a href="./login" class="login-panel"><i class="fa fa-user"></i>Đăng Nhập</a>
+                    </c:otherwise>
+                </c:choose>
+
                 <div class="lan-selector">
                     <select class="language_drop" name="countries" id="countries" style="width:300px;">
                         <option value='yu' data-image="./templates/user/img/flag-2.jpg" data-imagecss="flag yu"
@@ -147,13 +156,23 @@
                     </li>
                     <li><a href="./blog.html">Tin Tức</a></li>
                     <li><a href="./contact">Liên Hệ</a></li>
-                    <li><a href="#">Trang</a>
-                        <ul class="dropdown">
-                            <li><a href="./register">Đăng Ký</a></li>
-                            <li><a href="./login">Đăng Nhập</a></li>
-                            <li><a href="./check-out.html">Đăng Xuất</a></li>
-                        </ul>
-                    </li>
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.current}">
+                            <li><a href="#">${sessionScope.current.fullname}</a>
+                                <ul class="dropdown">
+                                    <li><a href="./logout">Đăng Xuất</a></li>
+                                </ul>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="#">Trang</a>
+                                <ul class="dropdown">
+                                    <li><a href="./register">Đăng Ký</a></li>
+                                    <li><a href="./login">Đăng Nhập</a></li>
+                                </ul>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
                 </ul>
             </nav>
             <div id="mobile-menu-wrap"></div>
