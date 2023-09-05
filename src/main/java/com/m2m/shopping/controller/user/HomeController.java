@@ -30,4 +30,5 @@ public class HomeController extends HttpServlet {
     protected void doGetContact(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/views/user/contact.jsp").forward(req, resp);
     }
+
 }
