@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Builder
@@ -22,6 +23,10 @@ public class Roles {
     @Enumerated(EnumType.STRING)
     @NaturalId
     private Eroles name;
+
+    @OneToMany(mappedBy = "role")
+    private List<Authorities> authorities ;
+
 }
 
 

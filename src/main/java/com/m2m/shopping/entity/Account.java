@@ -38,10 +38,13 @@ public class Account {
     private Boolean isActive = true;
     @OneToMany(mappedBy = "account")
     private List<Order> order ;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "User_Role",
-        joinColumns = @JoinColumn(name = "email"),inverseJoinColumns = @JoinColumn(name = "role"))
-    private Set<Roles> roleSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "account")
+    private List<Authorities> authorities ;
+
+
+
+
 
 
 }

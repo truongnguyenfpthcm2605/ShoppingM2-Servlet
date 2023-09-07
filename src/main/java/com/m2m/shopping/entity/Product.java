@@ -34,8 +34,6 @@ public class Product {
     private Integer camera;
     private String chip;
     private Double screen;
-
-
     @ManyToOne
     @JoinColumn(name = "idCategories", referencedColumnName = "id")
     private Categories categories;
