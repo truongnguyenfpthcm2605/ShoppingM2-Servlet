@@ -1,0 +1,13 @@
+{
+  "web": {
+    "client_id": "978644663966-3q82nb6s3486c8c44thq2l00qfel5qhr.apps.googleusercontent.com",
+    "project_id": "resonant-cairn-398205",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "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",
+    "redirect_uris": [
+      "https://developers.google.com/oauthplayground"
+    ]
+  }
+}

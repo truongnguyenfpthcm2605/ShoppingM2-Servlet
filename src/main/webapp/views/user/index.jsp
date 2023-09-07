@@ -4,14 +4,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>Trang Chủ</title>
     <%@include file="/common/head.jsp"%>
 </head>
 <body>
-<!-- Page Preloder -->
-<%--<div id="preloder">
-    <div class="loader"></div>
-</div>--%>
 
 <!-- Header Section Begin -->
 <%@ include file="/common/header.jsp"%>
