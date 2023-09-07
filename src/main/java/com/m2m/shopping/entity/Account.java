@@ -17,6 +17,9 @@ import java.util.Set;
 @Table(name = "Account")
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String email;
     @JsonIgnore
     private String password;
@@ -39,5 +42,6 @@ public class Account {
     @JoinTable(name = "User_Role",
         joinColumns = @JoinColumn(name = "email"),inverseJoinColumns = @JoinColumn(name = "role"))
     private Set<Roles> roleSet = new HashSet<>();
+
 
 }

@@ -22,4 +22,6 @@ public class AccountDTO {
     private Date birthday;
     private Boolean gender;
     private Long timeout;
+
+
 }
