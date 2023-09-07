@@ -18,7 +18,7 @@ public class Product {
     private String title;
     private Double price;
     private Double discount;
-    private Integer views;
+    private Long views;
     private String img;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate = new Date();
