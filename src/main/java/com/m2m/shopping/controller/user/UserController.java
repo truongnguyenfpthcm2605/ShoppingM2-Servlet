@@ -21,7 +21,6 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String path = req.getServletPath();
-        HttpSession session = req.getSession();
         switch(path){
             case "/login":
                 doGetLogin(req, resp);
@@ -30,7 +29,7 @@ public class UserController extends HttpServlet {
                 doGetRegister(req, resp);
                 break;
             case "/logout":
-                doGetLogout(session,req, resp);
+                doGetLogout(req, resp);
                 break;
         }
     }
@@ -44,7 +43,8 @@ public class UserController extends HttpServlet {
     }
 
 
-    protected void doGetLogout(HttpSession session,HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGetLogout(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession();
         session.removeAttribute("current");
         resp.sendRedirect("home");
     }
