@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/common/_taglib.jsp" %>
 <html>
 <head>
     <title>Sản Phẩm Chi Tiết</title>
@@ -19,7 +20,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="breadcrumb-text product-more">
-                                <a href="/home"/home">'"><i class="fa fa-home"></i> Trang chủ</a>
+                                <a href="/home" ><i class="fa fa-home"></i> Trang chủ</a>
                                 <a href="/product">Sản phẩm</a>
                                 <span>Sản phẩm chi tiết</span>
                             </div>
@@ -39,7 +40,7 @@
                             <div class="col-lg-6">
                                 <div class="product-pic-zoom">
                                     <img class="product-big-img"
-                                         src="${pageContext.request.contextPath}/templates/user/img/products/product-5.jpg"
+                                         src="/templates/user/img/products/${p.img}"
                                          alt="">
 
                                     <div class="zoom-icon">
@@ -50,9 +51,9 @@
                                     <div class="product-thumbs-track ps-slider owl-carousel">
                                         <c:forEach var="img" items="${images }">
                                             <div class="pt active"
-                                                 data-imgbigurl="${pageContext.request.contextPath}/img/detailproduct/${img}">
+                                                 data-imgbigurl="/templates/user/img/detailproduct/${img}">
                                                 <img
-                                                        src="${pageContext.request.contextPath}/img/detailproduct/${img}"
+                                                        src="/templates/user/img/detailproduct/${img}"
                                                         alt="">
                                             </div>
                                         </c:forEach>
@@ -62,7 +63,7 @@
                             <div class="col-lg-6">
                                 <div class="product-details">
                                     <div class="pd-title">
-                                        <span>${p.category.title }</span>
+                                        <span>${p.categories.title }</span>
                                         <h3>${p.title }</h3>
                                         <a href="#" class="heart-icon"><i class="icon_heart_alt"></i></a>
                                     </div>
@@ -76,12 +77,10 @@
                                             sắm tuyệt vời nhất .Cảm ơn bạn đã ghé thăm của hàng của chúng
                                             tôi !</p>
                                         <h4>
-                                            <fmt:formatNumber value="${p.price }" type="currency"
-                                                              currencyCode="VND" />
-                                            <span><fmt:formatNumber value="${p.pricecost}"
-                                                                    type="currency" currencyCode="VND" /></span>
+                                            <fmt:formatNumber value="${p.discount}" type="currency" currencyCode="VND" pattern="#,##0 đ"/><br>
+
                                         </h4>
-                                        <p>Lượt xem sản phẩm : ${item.views }</p>
+                                        <p>Lượt xem sản phẩm : ${p.views }</p>
                                     </div>
 
                                     <div class="pd-size-choose">
@@ -117,10 +116,10 @@
                                     </div>
                                     <div class="pd-share" style="margin-top:10px">
                                         <div class="p-code" style="color: #E57C23">
-                                            Tồn Kho : ${p.quanityfinal }
+                                            Tồn Kho : ${p.stockquantity }
                                         </div>
                                         <div class="pd-social"  style="color: #7AA874">
-                                            Đã Bán : ${p.quantitysold}
+                                            Đã Bán : ${p.buyquanity}
                                         </div>
                                     </div>
                                 </div>
@@ -169,8 +168,7 @@
                                                     <td class="p-catagory">Giá</td>
                                                     <td>
                                                         <div class="p-price">
-                                                            <fmt:formatNumber value="${p.price }" type="currency"
-                                                                              currencyCode="VND" />
+                                                            <fmt:formatNumber value="${p.discount}" type="currency" currencyCode="VND" pattern="#,##0 đ"/>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -219,7 +217,7 @@
                                                 <div class="co-item">
                                                     <div class="avatar-pic">
                                                         <img
-                                                                src="${pageContext.request.contextPath}/img/product-single/avatar-1.jpg"
+                                                                src="/templates/user/img/product-single/avatar-1.jpg"
                                                                 alt="">
                                                     </div>
                                                     <div class="avatar-text">
@@ -238,7 +236,7 @@
                                                 <div class="co-item">
                                                     <div class="avatar-pic">
                                                         <img
-                                                                src="${pageContext.request.contextPath}/img/product-single/hauvan.jpg"
+                                                                src="/templates/user/img/product-single/hauvan.jpg"
                                                                 alt="">
                                                     </div>
                                                     <div class="avatar-text">
@@ -274,7 +272,7 @@
                                                         </div>
                                                         <div class="col-lg-12">
                                                             <textarea placeholder="Nội dung"></textarea>
-                                                            <button type="submit" class="site-btn">Gửi Bình
+                                                            <button type="button" class="site-btn">Gửi Bình
                                                                 Luận</button>
                                                         </div>
                                                     </div>
@@ -297,109 +295,39 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section-title">
-                                <h2>Related Products</h2>
+                                <h2>Sản Phẩm Đề Xuất</h2>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="${pageContext.request.contextPath}/templates/user/img/products/women-1.jpg" alt="">
-                                    <div class="sale">Sale</div>
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
+                        <c:forEach var="item" items="${products}">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="product-item">
+                                    <div class="pi-pic">
+                                        <img src="/templates/user/img/products/${item.img}" alt="">
+                                        <div class="sale">Sale</div>
+                                        <div class="icon">
+                                            <i class="icon_heart_alt"></i>
+                                        </div>
+                                        <ul>
+                                            <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
+                                            <li class="quick-view"><a href="/detail?id=${item.id}">Xem Nhanh</a></li>
+                                            <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                        </ul>
                                     </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Coat</div>
-                                    <a href="#">
-                                        <h5>Pure Pineapple</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $14.00
-                                        <span>$35.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="${pageContext.request.contextPath}/templates/user/img/products/women-2.jpg" alt="">
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Shoes</div>
-                                    <a href="#">
-                                        <h5>Guangzhou sweater</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $13.00
+                                    <div class="pi-text">
+                                        <div class="catagory-name">Coat</div>
+                                        <a href="/detail?id=${item.id}">
+                                            <h5>${item.title}</h5>
+                                        </a>
+                                        <div class="product-price">
+                                            <fmt:formatNumber value="${item.discount}" type="currency" currencyCode="VND" pattern="#,##0 đ"/><br>
+                                            <span><fmt:formatNumber value="${item.price}" type="currency" currencyCode="VND" pattern="#,##0 đ"/></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="${pageContext.request.contextPath}/templates/user/img/products/women-3.jpg" alt="">
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Towel</div>
-                                    <a href="#">
-                                        <h5>Pure Pineapple</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $34.00
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="product-item">
-                                <div class="pi-pic">
-                                    <img src="${pageContext.request.contextPath}/templates/user/img/products/women-4.jpg" alt="">
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                        <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                        <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="catagory-name">Towel</div>
-                                    <a href="#">
-                                        <h5>Converse Shoes</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        $34.00
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

@@ -25,7 +25,7 @@ public class Product {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createUpdate;
     private Integer stockquantity;
-    private Integer buyquantity;
+    private Integer buyquanity;
     private String description;
     private Boolean isActive;
     private Integer ram;
@@ -42,4 +42,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Gallery> gallery;
 
+
+    @Override
+    public String toString() {
+        return "Product{}";
+    }
 }

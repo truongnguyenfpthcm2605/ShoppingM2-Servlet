@@ -12,4 +12,6 @@ public interface GalleryService {
 
     List<Gallery> findAll();
 
+    Gallery findByIdProduct(Integer id);
+
 }

@@ -19,4 +19,14 @@ public class Categories {
     private String icon;
     @OneToMany(mappedBy = "categories")
     private List<Product> product;
+
+    @Override
+    public String toString() {
+        return "Categories{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", icon='" + icon + '\'' +
+                ", product=" + product +
+                '}';
+    }
 }

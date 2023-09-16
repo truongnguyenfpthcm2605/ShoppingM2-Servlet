@@ -1703,15 +1703,7 @@ ol {
 	position: relative;
 }
 
-.breadcrumb-text a:after {
-	position: absolute;
-	right: -18px;
-	top: 0px;
-	content: "";
-	font-family: "FontAwesome";
-	font-size: 16px;
-	color: #b2b2b2;
-}
+
 
 .breadcrumb-text span {
 	display: inline-block;
