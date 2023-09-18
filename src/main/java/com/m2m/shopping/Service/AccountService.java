@@ -12,5 +12,7 @@ public interface AccountService {
     Account findById(String id);
     boolean delete(Account account);
 
+    Account findByUsernameAndPassword(String username, String password);
+
     Account findByToken(String token);
 }

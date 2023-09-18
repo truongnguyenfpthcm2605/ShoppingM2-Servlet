@@ -36,37 +36,35 @@
         <div class="col-lg-6 offset-lg-3">
           <div class="register-form">
             <h2>Đăng Ký</h2>
-            <form action="#">
+            <h5>${message}</h5>
+            <form action="./register" method="POST">
               <div class="form-group">
                 <label >Email *</label>
-                <input type="email" class="form-control">
+                <input type="email" name="email" class="form-control" value="${email}">
               </div>
               <div class="form-group">
                 <label for="pass">Họ Và Tên *</label>
-                <input type="text" class="form-control">
-              </div>
-              <div class="form-group">
-                <label for="pass">Ngày Sinh *</label>
-                <input type="date" class="form-control">
+                <input type="text" class="form-control" name="fullname" value="${fullname}">
               </div>
               <div class="form-group">
                 <label for="inputState">Giới tính</label>
-                <select id="inputState" class="form-control">
+                <select id="inputState" class="form-control" name="gender">
                   <option selected value="true">Name</option>
                   <option value="false">Nữ</option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="pass">Mật khẩu *</label>
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" name="password" value="${password}">
               </div>
               <div class="form-group">
                 <label for="con-pass">Xác nhận mật khẩu *</label>
-                <input type="password" class="form-control">
+                <input type="password" class="form-control" value="${password}">
               </div>
               <div class="form-group">
-                <label for="con-pass">Mã xác nhận *</label>
-                <input type="text" class="form-control">
+                <label for="token">Mã xác thực</label>
+                <input type="text" class="form-control" name="token">
+                <button formaction="./verify" class="site-btn register-btn">Lấy mã</button>
               </div>
               <button type="submit" class="site-btn register-btn">Đăng kÝ </button>
             </form>

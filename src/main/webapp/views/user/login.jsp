@@ -50,7 +50,7 @@
                 <div class="gi-more">
                   <label for="save-pass">
                     Lưu mật khẩu?
-                    <input type="checkbox" id="save-pass">
+                    <input type="checkbox" id="save-pass" name="remember">
                     <span class="checkmark"></span>
                   </label>
                   <a href="#" class="forget-pass">Quên mật khẩu?</a>
