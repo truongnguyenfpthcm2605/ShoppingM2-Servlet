@@ -16,9 +16,8 @@ public class Product {
     @Column( name = "id")
     private Integer id;
     private String title;
-    private Double price;
-    private Double discount;
-    private Integer quantity;
+    private Long price;
+    private Long discount;
     private String img;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate = new Date();

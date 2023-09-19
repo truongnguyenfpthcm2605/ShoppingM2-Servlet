@@ -298,5 +298,9 @@
 
 <%@ include file = "/common/admin/_script.jsp" %>
 
+<!-- Page level custom scripts -->
+<script src="<c:url value='/templates/admin/js/demo/chart-area-demo.js'/>"></script>
+<script src="<c:url value='/templates/admin/js/demo/chart-pie-demo.js'/>"></script>
+
 </body>
 </html>

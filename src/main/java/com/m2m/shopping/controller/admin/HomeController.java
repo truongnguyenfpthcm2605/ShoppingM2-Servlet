@@ -15,15 +15,10 @@ public class HomeController extends HttpServlet {
         String path = req.getServletPath();
         switch (path) {
             case "/admin" -> doGetHome(req, resp);
-            case "/admin/favorites" -> doGetFavorite(req, resp);
         }
     }
 
     private void doGetHome(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/views/admin/home.jsp").forward(req, resp);
-    }
-
-    private void doGetFavorite(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
     }
 }

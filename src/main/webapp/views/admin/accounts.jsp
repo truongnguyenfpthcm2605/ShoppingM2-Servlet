@@ -35,66 +35,37 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <table class="table table-bordered" id="dataTable">
                                     <thead>
-                                    <tr>
-                                        <th>Fullname</th>
-                                        <th>Create Date</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Fullname</th>
+                                            <th>Email</th>
+                                            <th>Create Date</th>
+                                            <th>Gender</th>
+                                            <th>Action</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Shad Decker</td>
-                                        <td>Regional Director</td>
-                                        <td>Edinburgh</td>
-                                        <td>51</td>
-                                        <td>2008/11/13</td>
-                                        <td>$183,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Michael Bruce</td>
-                                        <td>Javascript Developer</td>
-                                        <td>Singapore</td>
-                                        <td>29</td>
-                                        <td>2011/06/27</td>
-                                        <td>$183,000</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Donna Snider</td>
-                                        <td>Customer Support</td>
-                                        <td>New York</td>
-                                        <td>27</td>
-                                        <td>2011/01/25</td>
-                                        <td>$112,000</td>
-                                    </tr>
+                                        <c:forEach items="${accounts}" var="account">
+                                            <tr>
+                                                <td>${account.fullname}</td>
+                                                <td>${account.email}</td>
+                                                <td>${account.createDate}</td>
+                                                <td>${account.gender}</td>
+                                                <td>
+                                                    <div class="flex align-items-center justify-content-between">
+                                                        <a href="<c:url value='/admin/accounts?action=edit&email=${account.email}'/>"
+                                                           class="btn text-info">
+                                                            <i class="fas fa-fw fa-pen"></i>
+                                                        </a>
+                                                        <a href="<c:url value='/admin/accounts?action=delete&email=${account.email}'/>"
+                                                           class="btn text-danger">
+                                                            <i class="fas fa-fw fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -124,5 +95,7 @@
 
     <%@ include file = "/common/admin/_script.jsp" %>
 
+    <!-- Page level custom scripts -->
+    <script src="<c:url value='/templates/admin/js/demo/datatables-demo.js'/>"></script>
 </body>
 </html>

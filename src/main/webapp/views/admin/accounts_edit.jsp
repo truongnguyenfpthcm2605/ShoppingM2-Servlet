@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ include file = "/common/_taglib.jsp" %>
 
 <html>
@@ -33,7 +33,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Edit Account</h6>
                         </div>
                         <div class="card-body">
-                            <form>
+                            <form action="/admin/accounts" method="POST">
                                 <div class="row">
                                     <div class="col-6">
 
@@ -41,19 +41,19 @@
                                     <div class="col-6">
                                         <div class="form-group mb-3">
                                             <label for="email">Email:</label>
-                                            <input type="text" class="form-control" id="email">
+                                            <input type="text" class="form-control" id="email" name="email" value="${account.email}">
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="password">Password:</label>
-                                            <input type="password" class="form-control" id="password">
+                                            <input name="password" value="${account.password}" type="password" class="form-control" id="password">
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="fullname">Fullname:</label>
-                                            <input type="number" class="form-control" id="fullname">
+                                            <input name="fullname" value="${account.fullname}" type="text" class="form-control" id="fullname">
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="phoneNumbers">Phone Number:</label>
-                                            <input type="number" class="form-control" id="phoneNumbers" readonly>
+                                            <input name="phoneNumbers" value="${account.phoneNumbers}" type="text" class="form-control" id="phoneNumbers">
                                         </div>
                                     </div>
                                 </div>
@@ -62,50 +62,55 @@
                                         <label for="gender">Gender:</label>
                                         <div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" id="male" value="1">
+                                                <input class="form-check-input" type="radio" name="gender" id="male" checked>
                                                 <label class="form-check-label" for="male">Male</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" id="female" value="0">
+                                                <input class="form-check-input" type="radio" name="gender" id="female" value="${!account.gender}">
                                                 <label class="form-check-label" for="female">Female</label>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group mb-3 col-6">
-                                        <label for="roleSet">Phone Number:</label>
-                                        <select id="roleSet" class="form-control">
-                                            <option>Select Role</option>
-                                            <option value="admin">ADMIN</option>
-                                            <option value="user">USER</option>
-                                        </select>
-                                    </div>
+<%--                                    <div class="form-group mb-3 col-6">--%>
+<%--                                        <label for="roleSet">Role:</label>--%>
+<%--                                        <select id="roleSet" class="form-control" name="roleSet" value="${account.roleSet.id}">--%>
+<%--                                            <option>Select Role</option>--%>
+<%--                                            <option value="admin">ADMIN</option>--%>
+<%--                                            <option value="user">USER</option>--%>
+<%--                                        </select>--%>
+<%--                                    </div>--%>
                                 </div>
                                 <div class="row">
                                     <div class="form-group mb-3 col-6">
                                         <label for="createDate">Create Date:</label>
-                                        <input type="number" class="form-control" id="createDate">
+                                        <input name="createDate" value="${account.createDate}" type="date" class="form-control" id="createDate" readonly>
                                     </div>
                                     <div class="form-group mb-3 col-6">
                                         <label for="createUpdate">Update Date:</label>
-                                        <input type="number" class="form-control" id="createUpdate" readonly>
+                                        <input name="createUpdate" value="${account.createUpdate}" type="date" class="form-control" id="createUpdate" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="img">Image:</label>
-                                    <input type="text" class="form-control" id="img"/>
+                                    <input name="img" value="${account.img}" type="text" class="form-control" id="img"/>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="address">Address:</label>
                                     <textarea class="form-control"
+                                              name="address"
                                               id="address"
-                                              style="height: 100px"></textarea>
+                                              style="height: 100px">${account.address}</textarea>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="token">Token:</label>
                                     <textarea class="form-control"
+                                              name="token"
                                               id="token"
-                                              style="height: 100px"></textarea>
+                                              style="height: 100px">${account.token}</textarea>
                                 </div>
+                                <input type="hidden" id="isEdit" name="isEdit" value="${isEdit}" class="form-control">
+                                <button class="btn btn-success" type="submit">Save</button>
+                                <a class="btn btn-info">Clear</a>
                             </form>
                         </div>
                     </div>
