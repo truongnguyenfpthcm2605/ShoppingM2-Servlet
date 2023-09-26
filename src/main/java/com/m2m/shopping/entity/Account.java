@@ -18,6 +18,9 @@ import java.util.Set;
 @Table(name = "Account")
 public class Account {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     private String email;
     @JsonIgnore
     private String password;
@@ -36,9 +39,13 @@ public class Account {
     private Boolean isActive = true;
     @OneToMany(mappedBy = "account")
     private List<Order> order ;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "User_Role",
-        joinColumns = @JoinColumn(name = "email"),inverseJoinColumns = @JoinColumn(name = "role"))
-    private Set<Roles> roleSet = new HashSet<>();
+
+    @OneToMany(mappedBy = "account")
+    private List<Authorities> authorities ;
+
+
+
+
+
 
 }

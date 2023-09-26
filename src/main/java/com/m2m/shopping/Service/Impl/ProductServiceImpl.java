@@ -7,7 +7,6 @@ import com.m2m.shopping.repository.JpaRepository;
 import java.util.List;
 
 public class ProductServiceImpl extends JpaRepository<Product> implements ProductService {
-
     @Override
     public Product findById(Integer id) {
         return super.findByid(Product.class, id);
@@ -18,10 +17,21 @@ public class ProductServiceImpl extends JpaRepository<Product> implements Produc
         return super.findAll(Product.class, true);
     }
 
+    public Product create(Product enity) {
+        return super.create(enity);
+    }
+
     @Override
-    public boolean delete(Product product) {
+    public Product save(Product enity) {
+        return super.save(enity);
+    }
+
+    @Override
+    public boolean delete(Product enity) {
         product.setIsActive(false);
-        super.save(product);
-        return true;
+        if (super.save(product) != null) {
+            return true;
+        }
+        return false;
     }
 }
