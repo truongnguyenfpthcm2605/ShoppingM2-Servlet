@@ -62,32 +62,32 @@
                                         <label for="gender">Gender:</label>
                                         <div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" id="male" checked>
+                                                <input class="form-check-input" type="radio" name="gender" id="male" ${account.gender ? 'checked' : ''}>
                                                 <label class="form-check-label" for="male">Male</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="gender" id="female" value="${!account.gender}">
+                                                <input class="form-check-input" type="radio" name="gender" id="female" ${!account.gender ? 'checked' : ''}>
                                                 <label class="form-check-label" for="female">Female</label>
                                             </div>
                                         </div>
                                     </div>
-<%--                                    <div class="form-group mb-3 col-6">--%>
-<%--                                        <label for="roleSet">Role:</label>--%>
-<%--                                        <select id="roleSet" class="form-control" name="roleSet" value="${account.roleSet.id}">--%>
-<%--                                            <option>Select Role</option>--%>
-<%--                                            <option value="admin">ADMIN</option>--%>
-<%--                                            <option value="user">USER</option>--%>
-<%--                                        </select>--%>
-<%--                                    </div>--%>
+                                    <div class="form-group mb-3 col-6">
+                                        <label for="roleSet">Role:</label>
+                                        <select id="roleId" class="form-control" name="roleId" value="${roleId}">
+                                            <option>Select Role</option>
+                                            <option value="admin">ADMIN</option>
+                                            <option value="user">USER</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group mb-3 col-6">
                                         <label for="createDate">Create Date:</label>
-                                        <input name="createDate" value="${account.createDate}" type="date" class="form-control" id="createDate" readonly>
+                                        <input name="createDate" value="${createDate}" type="date" class="form-control" id="createDate" readonly>
                                     </div>
                                     <div class="form-group mb-3 col-6">
                                         <label for="createUpdate">Update Date:</label>
-                                        <input name="createUpdate" value="${account.createUpdate}" type="date" class="form-control" id="createUpdate" readonly>
+                                        <input name="createUpdate" value="${updateDate}" type="date" class="form-control" id="createUpdate" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
@@ -110,7 +110,7 @@
                                 </div>
                                 <input type="hidden" id="isEdit" name="isEdit" value="${isEdit}" class="form-control">
                                 <button class="btn btn-success" type="submit">Save</button>
-                                <a class="btn btn-info">Clear</a>
+                                <a href="/admin/accounts?action=add" class="btn btn-info">Clear</a>
                             </form>
                         </div>
                     </div>

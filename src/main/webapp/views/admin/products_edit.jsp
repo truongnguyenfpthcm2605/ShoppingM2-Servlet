@@ -38,7 +38,7 @@
                                     <div class="form-group col-6">
                                         <label for="title">Title:</label>
                                         <input type="text" name="title" class="form-control" id="title" value="${product.title}">
-                                        <input type="hidden" name="title" id="id" value="${product.id}">
+<%--                                        <input type="hidden" name="title" id="id" value="${product.id}">--%>
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="price">Price:</label>
@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="categories">Category:</label>
-                                        <select class="form-control" id="categories" name="categories" value="${product.categories.id}">
+                                        <select class="form-control" id="categoryId" name="categoryId" value="${categoryId}">
                                             <option selected>Open this select menu</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label for="buyquantity">Buy quantity:</label>
-                                        <input name="buyquantity" type="number" value="${product.buyquantity}" class="form-control" id="buyquantity" readonly>
+                                        <input name="buyquanity" type="number" value="${product.buyquanity}" class="form-control" id="buyquanity" readonly>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">

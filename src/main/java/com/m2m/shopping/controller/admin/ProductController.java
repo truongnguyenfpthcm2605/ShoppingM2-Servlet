@@ -6,6 +6,7 @@ import com.m2m.shopping.Service.Impl.ProductServiceImpl;
 import com.m2m.shopping.Service.ProductService;
 import com.m2m.shopping.entity.Categories;
 import com.m2m.shopping.entity.Product;
+import com.m2m.shopping.utils.DateUtils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.Converter;
@@ -74,6 +75,9 @@ public class ProductController extends HttpServlet {
 
     private void doGetAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("isEdit", "false");
+        Date currentDate = new Date();
+        String createDate = DateUtils.dateToString("yyyy-MM-dd", currentDate);
+        req.setAttribute("createDate", createDate);
         req.getRequestDispatcher("/views/admin/products_edit.jsp").forward(req, resp);
     }
 
@@ -82,32 +86,30 @@ public class ProductController extends HttpServlet {
         Integer id = Integer.valueOf(idTemp);
         Product product = productService.findById(id);
 
-        req.setAttribute("product", product);
-        System.out.println(product.getCreateDate());
-        req.setAttribute("isEdit", "true");
-        req.getRequestDispatcher("/views/admin/products_edit.jsp").forward(req, resp);
+        if(product != null) {
+            // Convert format date create and update
+            String createDate = DateUtils.dateToString("yyyy-MM-dd", product.getCreateDate());
+            String updateDate = DateUtils.dateToString("yyyy-MM-dd", product.getCreateUpdate());
+            req.setAttribute("createDate", createDate);
+            req.setAttribute("updateDate", updateDate);
+
+            req.setAttribute("product", product);
+            req.setAttribute("isEdit", "true");
+            req.getRequestDispatcher("/views/admin/products_edit.jsp").forward(req, resp);
+        } else {
+            resp.sendRedirect("/admin/products?action=view");
+        }
     }
 
     private void doPostAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Product product = new Product();
         try {
             DateTimeConverter dtc = new DateConverter(new Date());
             dtc.setPattern("yyyy-mm-dd");
             ConvertUtils.register(dtc, Date.class);
 
-            Product product = new Product();
-            product.setTitle(req.getParameter("title"));
-            product.setPrice(Long.valueOf(req.getParameter("price")));
-            product.setDiscount(Long.valueOf(req.getParameter("discount")));
-            Categories categories = categoriesService.findById(Integer.valueOf(req.getParameter("categories")));
-            product.setCategories(categories);
-            product.setStockquantity(Integer.valueOf(req.getParameter("stockquantity")));
-            product.setImg(req.getParameter("img"));
-            product.setDescription(req.getParameter("description"));
-
-            req.setAttribute("isEdit", "false");
-
+            BeanUtils.populate(product, req.getParameterMap());
             productService.save(product);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

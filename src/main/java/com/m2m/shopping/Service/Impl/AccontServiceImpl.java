@@ -28,8 +28,16 @@ public class AccontServiceImpl extends JpaRepository<Account> implements Account
     }
 
     @Override
-    public boolean delete(Account enity) {
-        return super.delete(enity);
+    public boolean delete(Account entity) {
+        entity.setIsActive(false);
+        try {
+            super.save(entity);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override

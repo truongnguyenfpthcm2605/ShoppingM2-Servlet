@@ -17,4 +17,11 @@ public class ProductServiceImpl extends JpaRepository<Product> implements Produc
     public List<Product> findAll() {
         return super.findAll(Product.class, true);
     }
+
+    @Override
+    public boolean delete(Product product) {
+        product.setIsActive(false);
+        super.save(product);
+        return true;
+    }
 }
