@@ -38,20 +38,20 @@ public class ProductServiceImpl  extends JpaRepository<Product> implements Produ
 
     @Override
     public List<Product> findPageParam( Boolean existActive, int pageNumber, int pageSize, String title, Integer idCategories) {
-        String sql = "select o from Product o where o.title like ?0 and o.categories.id = ?1";
-        return super.findManyPage(Product.class,sql,pageNumber,pageSize,"%"+title+"%", idCategories );
+        String sql = "select o from Product o where o.isActive = ?0 and  o.title like ?1 and o.categories.id = ?2";
+        return super.findManyPage(Product.class,sql,pageNumber,pageSize,existActive,"%"+title+"%", idCategories );
     }
 
     @Override
     public List<Product> findPageParam(Boolean existActive, int pageNumber, int pageSize, Integer idCategories) {
-        String sql = "select o from Product o where  o.categories.id = ?0";
-        return super.findManyPage(Product.class,sql,pageNumber,pageSize, idCategories );
+        String sql = "select o from Product o where o.isActive = ?0 and  o.categories.id = ?1 ";
+        return super.findManyPage(Product.class,sql,pageNumber,pageSize,existActive, idCategories );
     }
 
     @Override
     public List<Product> findPageParam(Boolean existActive, int pageNumber, int pageSize, String title) {
-        String sql = "select o from Product o where o.title like ?0 or o.categories.title like ?1";
-        return super.findManyPage(Product.class,sql,pageNumber,pageSize,"%"+title+"%","%"+title+"%" );
+        String sql = "select o from Product o where o.isActive = ?0 and o.title like ?1 or o.categories.title like ?2";
+        return super.findManyPage(Product.class,sql,pageNumber,pageSize,existActive,"%"+title+"%","%"+title+"%" );
     }
 
     @Override
@@ -60,9 +60,8 @@ public class ProductServiceImpl  extends JpaRepository<Product> implements Produ
         List<Product> resultList = super.findMany(Product.class, sql, min, max);
         if (resultList.size() <= 4) {
             return resultList;
-        } else {
-            return resultList.subList(0, 4);
         }
+        return resultList.subList(0, 4);
     }
 
     @Override

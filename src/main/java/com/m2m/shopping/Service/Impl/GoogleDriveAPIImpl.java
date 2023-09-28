@@ -24,7 +24,4 @@ public class GoogleDriveAPIImpl {
     public List<File> getListFile(String folderName){
         return googleDriveApi.listImagesInFolder( folderName);
     }
-
-
-
 }

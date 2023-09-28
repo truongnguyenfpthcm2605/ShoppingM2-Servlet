@@ -1,14 +1,13 @@
 package com.m2m.shopping.controller.user;
 
+import com.m2m.shopping.Service.CategoriesService;
+import com.m2m.shopping.Service.GalleryService;
 import com.m2m.shopping.Service.Impl.CategoriesServiceImpl;
 import com.m2m.shopping.Service.Impl.GalleryServiceImpl;
 import com.m2m.shopping.Service.Impl.ProductServiceImpl;
+import com.m2m.shopping.Service.ProductService;
 import com.m2m.shopping.entity.Categories;
-import com.m2m.shopping.entity.Gallery;
 import com.m2m.shopping.entity.Product;
-import com.m2m.shopping.utils.Keywords;
-import com.m2m.shopping.utils.SessionUtils;
-import lombok.RequiredArgsConstructor;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +19,11 @@ import java.util.List;
 
 @WebServlet({"/product","/detail"})
 public class ProductController  extends HttpServlet {
-     ProductServiceImpl productService = new ProductServiceImpl();
-     CategoriesServiceImpl categoriesService = new CategoriesServiceImpl();
-     GalleryServiceImpl galleryService = new GalleryServiceImpl();
-     private static final Integer maxPage = 9;
+    private static final Integer maxPage = 9;
+     ProductService productService = new ProductServiceImpl();
+     CategoriesService categoriesService = new CategoriesServiceImpl();
+     GalleryService galleryService = new GalleryServiceImpl();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,7 +33,7 @@ public class ProductController  extends HttpServlet {
                 doGetProduct(req, resp);
                 break;
             case "/detail":
-                doDetatil(req, resp);
+                doDetail(req, resp);
                 break;
         }
     }
@@ -59,10 +59,12 @@ public class ProductController  extends HttpServlet {
         }else{
             if(idCategory!=null){
                 products = productService.findPageParam(true,1,maxPage,Integer.valueOf(idCategory));
-            } else if (title!=null) {
+            }
+            else if (title!=null) {
                 products = productService.findPageParam(true,1, maxPage, title);
                 req.setAttribute("search", title);
-            }else if(sort!=null){
+            }
+            else if(sort!=null){
                 products = getSort(Integer.parseInt(sort),1,maxPage);
                 req.setAttribute("sort",Integer.parseInt(sort));
             }
@@ -84,7 +86,7 @@ public class ProductController  extends HttpServlet {
         req.getRequestDispatcher("/views/user/product.jsp").forward(req, resp);
     }
 
-    protected void doDetatil(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doDetail(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer id = Integer.valueOf(req.getParameter("id"));
         Product product = productService.findById(id);
         product.setViews(product.getViews()+1);
