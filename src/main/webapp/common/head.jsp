@@ -19,3 +19,6 @@
 <link rel="stylesheet" href="./templates/user/css/jquery-ui.min.css" type="text/css">
 <link rel="stylesheet" href="./templates/user/css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="./templates/user/css/style.css" type="text/css">
+<!-- Thêm thư viện jQuery từ CDN -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+

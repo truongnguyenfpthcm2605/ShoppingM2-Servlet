@@ -9,7 +9,7 @@ import java.util.List;
 public class GalleryServiceImpl extends JpaRepository<Gallery> implements GalleryService {
     @Override
     public Gallery findById(Integer id) {
-        return super.findByid(Gallery.class,id);
+        return super.findById(Gallery.class,id);
     }
 
     @Override

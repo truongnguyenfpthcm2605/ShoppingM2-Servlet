@@ -145,9 +145,15 @@
                     <li><a href="./contact">Liên Hệ</a></li>
                     <c:choose>
                         <c:when test="${not empty sessionScope.current}">
-                            <li><a href="#">${sessionScope.current.fullname}</a>
+                            <li><a href="./edit-profile">${sessionScope.current.fullname}</a>
                                 <ul class="dropdown">
                                     <li><a href="./logout">Đăng Xuất</a></li>
+                                </ul>
+                                <ul class="dropdown">
+                                    <li><a href="./change-pass">Đổi mật khẩu</a></li>
+                                </ul>
+                                <ul class="dropdown">
+                                    <li><a href="./edit-profile">Cập nhật thông tin</a></li>
                                 </ul>
                             </li>
                         </c:when>

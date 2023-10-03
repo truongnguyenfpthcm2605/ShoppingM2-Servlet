@@ -9,7 +9,7 @@ import java.util.List;
 public class AuthoritiesServiceImpl  extends JpaRepository<Authorities> implements AuthoritiesService {
     @Override
     public Authorities findById(Integer id) {
-        return super.findByid(Authorities.class, id);
+        return super.findById(Authorities.class, id);
     }
 
     @Override
