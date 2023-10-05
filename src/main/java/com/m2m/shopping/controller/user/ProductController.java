@@ -19,10 +19,10 @@ import java.util.List;
 
 @WebServlet({"/product","/detail"})
 public class ProductController  extends HttpServlet {
-    private static final Integer maxPage = 9;
-     ProductService productService = new ProductServiceImpl();
-     CategoriesService categoriesService = new CategoriesServiceImpl();
-     GalleryService galleryService = new GalleryServiceImpl();
+         private static final Integer MAX_PAGE = 9;
+         ProductService productService = new ProductServiceImpl();
+         CategoriesService categoriesService = new CategoriesServiceImpl();
+         GalleryService galleryService = new GalleryServiceImpl();
 
 
     @Override
@@ -39,7 +39,6 @@ public class ProductController  extends HttpServlet {
     }
 
     protected void doGetProduct(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         String pagenumber = req.getParameter("page");
         String idCategory = req.getParameter("category");
         String title = req.getParameter("search");
@@ -50,39 +49,38 @@ public class ProductController  extends HttpServlet {
         List<Product> products;
         List<Categories> categories = categoriesService.findAll();
         req.setAttribute("categories",categories);
-        products = productService.findAll();
-        req.setAttribute("total", products.size());
-        int maxpage = (int)Math.ceil(products.size()/(double)maxPage);
 
         if(pagenumber !=null) {
-            products = productService.findToPage(true, Integer.parseInt(pagenumber), maxPage);
+            products = productService.findToPage(true, Integer.parseInt(pagenumber), MAX_PAGE);
         }else{
             if(idCategory!=null){
-                products = productService.findPageParam(true,1,maxPage,Integer.valueOf(idCategory));
+                products = productService.findPageParam(true,1,MAX_PAGE,Integer.valueOf(idCategory));
             }
             else if (title!=null) {
-                products = productService.findPageParam(true,1, maxPage, title);
+                products = productService.findPageParam(true,1, MAX_PAGE, title);
                 req.setAttribute("search", title);
             }
             else if(sort!=null){
-                products = getSort(Integer.parseInt(sort),1,maxPage);
+                products = getSort(Integer.parseInt(sort),1,MAX_PAGE);
                 req.setAttribute("sort",Integer.parseInt(sort));
             }
             else if(memory!=null){
-                products = productService.findAllMemory(1,maxPage,Integer.parseInt(memory));
+                products = productService.findAllMemory(1,MAX_PAGE,Integer.parseInt(memory));
             }
             else if(minPrice!=null && maxPrice!=null){
                 Double min = Double.parseDouble(minPrice.substring(1,minPrice.length()));
                 Double max = Double.parseDouble(maxPrice.substring(1,maxPrice.length()));
-                products = productService.findProductBetweenPage(min,max,1,maxPage);
+                products = productService.findProductBetweenPage(min,max,1,MAX_PAGE);
             }
             else{
-                products = productService.findToPage(true, 1,maxPage);
+                products = productService.findToPage(true, 1,MAX_PAGE);
             }
         }
+        int maxpage = (int)Math.ceil(productService.findAll().size()/(double)MAX_PAGE);
         req.setAttribute("maxpage", maxpage);
         req.setAttribute("curentpage", pagenumber);
         req.setAttribute("products",products);
+        req.setAttribute("total", products.size());
         req.getRequestDispatcher("/views/user/product.jsp").forward(req, resp);
     }
 
@@ -92,7 +90,7 @@ public class ProductController  extends HttpServlet {
         product.setViews(product.getViews()+1);
         productService.save(product);
         String[] images = galleryService.findByIdProduct(id).getThumbnail().split("-");
-        List<Product> products = productService.findProductBetween(product.getDiscount()-2000000, product.getDiscount()+2000000);
+        List<Product> products = productService.findProductBetweenDiscount(product.getDiscount()-2000000, product.getDiscount()+2000000);
         req.setAttribute("products",products);
         req.setAttribute("images", images);
         req.setAttribute("p", product);

@@ -37,9 +37,9 @@ public class ProductServiceImpl  extends JpaRepository<Product> implements Produ
     }
 
     @Override
-    public List<Product> findPageParam( Boolean existActive, int pageNumber, int pageSize, String title, Integer idCategories) {
+    public List<Product> findPageParam(Boolean existActive, int pageNumber, int pageSize, String title, Integer idCategories) {
         String sql = "select o from Product o where o.isActive = ?0 and  o.title like ?1 and o.categories.id = ?2";
-        return super.findManyPage(Product.class,sql,pageNumber,pageSize,existActive,"%"+title+"%", idCategories );
+        return super.findManyPage(Product.class, sql, pageNumber, pageSize,existActive, "%"+title+"%", idCategories );
     }
 
     @Override
@@ -55,13 +55,13 @@ public class ProductServiceImpl  extends JpaRepository<Product> implements Produ
     }
 
     @Override
-    public List<Product> findProductBetween(Double min, Double max) {
+    public List<Product> findProductBetweenDiscount(Double min, Double max) {
         String sql = "select o from Product o where o.discount between ?0 and ?1";
-        List<Product> resultList = super.findMany(Product.class, sql, min, max);
-        if (resultList.size() <= 4) {
-            return resultList;
+        List<Product> results = super.findMany(Product.class, sql, min, max);
+        if (results.size() <= 4) {
+            return results;
         }
-        return resultList.subList(0, 4);
+        return results.subList(0, 4);
     }
 
     @Override

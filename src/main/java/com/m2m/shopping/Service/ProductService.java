@@ -21,7 +21,7 @@ public interface ProductService {
 
     List<Product> findPageParam( Boolean existActive, int pageNumber, int pageSize, String title);
 
-    List<Product> findProductBetween(Double min , Double max);
+    List<Product> findProductBetweenDiscount(Double min , Double max);
 
     List<Product> findProductBetweenPage(Double min , Double max, int page, int maxPage);
     List<Product> findAllSortPriceDesc(int page, int maxPage);
