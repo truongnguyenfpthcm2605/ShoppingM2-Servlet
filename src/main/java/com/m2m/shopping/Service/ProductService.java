@@ -12,4 +12,23 @@ public interface ProductService {
     boolean delete(Product Product);
 
     List<Product> findAll();
+
+    List<Product> findToPage( Boolean existActive, int pageNumber, int pageSize);
+
+    List<Product> findPageParam( Boolean existActive, int pageNumber, int pageSize, String title, Integer idCategories);
+
+    List<Product> findPageParam( Boolean existActive, int pageNumber, int pageSize, Integer idCategories);
+
+    List<Product> findPageParam( Boolean existActive, int pageNumber, int pageSize, String title);
+
+    List<Product> findProductBetweenDiscount(Double min , Double max);
+
+    List<Product> findProductBetweenPage(Double min , Double max, int page, int maxPage);
+    List<Product> findAllSortPriceDesc(int page, int maxPage);
+
+    List<Product> findAllSortPriceAsc(int page, int maxPage);
+
+    List<Product> findAllSortDate(int page, int maxPage);
+
+    List<Product> findAllMemory(int page, int maxPage,Integer GB);
 }

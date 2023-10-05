@@ -18,14 +18,14 @@ public class Product {
     private String title;
     private Double price;
     private Double discount;
-    private Integer views;
+    private Long views;
     private String img;
     @Temporal(TemporalType.TIMESTAMP)
     private Date createDate = new Date();
     @Temporal(TemporalType.TIMESTAMP)
     private Date createUpdate;
     private Integer stockquantity;
-    private Integer buyquantity;
+    private Integer buyquanity;
     private String description;
     private Boolean isActive;
     private Integer ram;
@@ -42,4 +42,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Gallery> gallery;
 
+
+    @Override
+    public String toString() {
+        return "Product{}";
+    }
 }

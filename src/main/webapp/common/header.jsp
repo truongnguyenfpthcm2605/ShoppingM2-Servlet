@@ -49,13 +49,13 @@
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
-                    <div class="advanced-search">
-                        <button type="button" class="category-btn">Danh Mục</button>
-                        <div class="input-group">
-                            <input type="text" placeholder="Bạn đang tìm gì?">
-                            <button type="button"><i class="ti-search"></i></button>
-                        </div>
-                    </div>
+                    <form action="/product" method="get" class="container">
+                        <input type="text" value="${search}"  style="width: 80%;
+                        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+                        border-radius: 10px;line-height: 40px; margin: 0; border: solid 1px orange; outline: none" placeholder="Bạn đang tìm gì?" name="search">
+                        <button type="submit" class="btn btn-warning" style="width: 15%; margin-left: 5px;
+                         height: 40px"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </form>
                 </div>
                 <div class="col-lg-3 text-right col-md-3">
                     <ul class="nav-right">
@@ -119,20 +119,7 @@
     </div>
     <div class="nav-item">
         <div class="container">
-            <div class="nav-depart">
-                <div class="depart-btn">
-                    <i class="ti-menu"></i>
-                    <span>Tất Cả</span>
-                    <ul class="depart-hover">
-                        <li class="active"><a href="#">Iphone</a></li>
-                        <li><a href="#">Samsung</a></li>
-                        <li><a href="#">Xiaomi</a></li>
-                        <li><a href="#">Nokia</a></li>
-                        <li><a href="#">Linh Kiện</a></li>
-                        <li><a href="#">Loa Bluetooth</a></li>
-                    </ul>
-                </div>
-            </div>
+
             <nav class="nav-menu mobile-menu">
                 <ul>
                     <li class="active"><a href="./home">Trang Chủ</a></li>

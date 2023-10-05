@@ -23,6 +23,6 @@ public class Authorities {
     private Account account;
     @ManyToOne
     @JoinColumn(name = "roleid")
-    private Roles roles;
+    private Roles role;
 
 }
