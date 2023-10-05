@@ -42,9 +42,16 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<Authorities> authorities ;
 
+    public Account(String email, String password, String fullname, Boolean gender) {
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.gender = gender;
+    }
 
-
-
-
-
+    public Account(String email, String password, String token) {
+        this.email = email;
+        this.password = password;
+        this.token = token;
+    }
 }

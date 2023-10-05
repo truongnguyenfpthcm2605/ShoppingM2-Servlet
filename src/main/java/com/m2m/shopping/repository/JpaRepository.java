@@ -16,7 +16,7 @@ public class JpaRepository<T> {
 		super.finalize();
 	}
 
-	public T findByid(Class<T> clazz, Object id) {
+	public T findById(Class<T> clazz, Integer id) {
 		return em.find(clazz, id);
 	}
 
@@ -46,7 +46,6 @@ public class JpaRepository<T> {
 	}
 
 	public T findOne(Class<T> clazz, String sql, Object... params) {
-		// select o from users o where o.id =?0 and o.name =?1
 		TypedQuery<T> quey = em.createQuery(sql, clazz);
 		for (int i = 0; i < params.length; i++) {
 			quey.setParameter(i, params[i]);

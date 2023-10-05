@@ -79,7 +79,33 @@
     </div>
 </footer>
 <!-- Footer Section End -->
+<script>
+    $(document).ready(function() {
+        $("#imgInput").on("change", function() {
+            var fileInput = document.getElementById('imgInput');
+            var file = fileInput.files[0];
+            var formData = new FormData();
 
+            formData.append("img", file);
+
+            $.ajax({
+                url: "/edit-profile", // Thay đổi đường dẫn đến Servlet của bạn
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    // Cập nhật src của hình ảnh với đường dẫn mới từ phản hồi của Servlet
+                    $("#userImage").attr("src", response);
+                },
+                error: function() {
+                    alert("Có lỗi xảy ra khi tải lên ảnh.");
+                }
+            });
+        });
+    });
+
+</script>
 <!-- Js Plugins -->
 <script src="./templates/user/js/jquery-3.3.1.min.js"></script>
 <script src="./templates/user/js/bootstrap.min.js"></script>

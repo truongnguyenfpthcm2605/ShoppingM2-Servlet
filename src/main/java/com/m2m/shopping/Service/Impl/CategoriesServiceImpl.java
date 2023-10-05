@@ -9,7 +9,7 @@ import java.util.List;
 public class CategoriesServiceImpl  extends JpaRepository<Categories> implements CategoriesService {
     @Override
     public Categories findById(Integer id) {
-        return super.findByid(Categories.class, id);
+        return super.findById(Categories.class, id);
     }
 
     @Override

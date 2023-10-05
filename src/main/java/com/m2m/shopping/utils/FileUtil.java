@@ -11,7 +11,6 @@ public class FileUtil {
 
     public static String writeFileImg(HttpServletRequest request, String path) {
         try {
-            int randomNumber = (int) (Math.random() * 500);
             String realpath = request.getServletContext().getRealPath("/images");
             Path path1 = Paths.get(realpath);
             if (!Files.exists(path1)) {

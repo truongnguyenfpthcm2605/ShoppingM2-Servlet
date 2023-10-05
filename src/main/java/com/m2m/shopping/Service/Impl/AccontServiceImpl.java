@@ -23,21 +23,27 @@ public class AccontServiceImpl extends JpaRepository<Account> implements Account
     }
 
     @Override
-    public Account findById(String id) {
-        return super.findByid(Account.class, id);
-    }
-
-    @Override
     public boolean delete(Account enity) {
         return super.delete(enity);
     }
 
     @Override
-    public Account findByToken(String token) {
-        String sql = "Select o from Account o where o.token == ?";
-        return super.findOne(Account.class, sql,token);
+    public Account findByUsernameAndPassword(String username, String password) {
+        String sql = "SELECT o FROM Account o WHERE o.email = ?0 AND o.password = ?1";
+        return super.findOne(Account.class, sql, username, password);
     }
 
+    @Override
+    public Account findByToken(String token) {
+        String sql = "SELECT o FROM Account o WHERE o.token = ?0";
+        return super.findOne(Account.class, sql, token);
+    }
+
+    @Override
+    public Account findByEmail(String email) {
+        String sql = "SELECT o FROM Account o WHERE o.email = ?0";
+        return super.findOne(Account.class, sql, email);
+    }
 
 
 }

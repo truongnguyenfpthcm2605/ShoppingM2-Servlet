@@ -35,31 +35,17 @@
       <div class="row">
         <div class="col-lg-6 offset-lg-3">
           <div class="login-form">
-            <h2>Đăng Nhập</h2>
+            <h2>Quên mật khẩu</h2>
             <i>${error}</i>
-            <form action="./login" method="POST">
+            <form action="./forget" method="POST">
               <div class="group-input">
                 <label for="email">Email *</label>
                 <input type="email" id="email" name="email">
               </div>
-              <div class="group-input">
-                <label for="password">Mật khẩu *</label>
-                <input type="password" id="password" name="password">
-              </div>
-              <div class="group-input gi-check">
-                <div class="gi-more">
-                  <label for="save-pass">
-                    Lưu mật khẩu?
-                    <input type="checkbox" id="save-pass" name="remember">
-                    <span class="checkmark"></span>
-                  </label>
-                  <a href="./forget" class="forget-pass">Quên mật khẩu?</a>
-                </div>
-              </div>
-              <button type="submit" class="site-btn login-btn">Đăng Nhập</button>
+              <button type="submit" class="site-btn login-btn">Gửi mã xác thực</button>
             </form>
             <div class="switch-login">
-              <a href="./register" class="or-login">Hoặc Tạo Tài Khoản Tại Đây</a>
+              <a href="./login" class="or-login">Đăng nhập</a>
             </div>
           </div>
         </div>

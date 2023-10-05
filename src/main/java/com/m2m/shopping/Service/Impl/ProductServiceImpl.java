@@ -9,7 +9,7 @@ import java.util.List;
 public class ProductServiceImpl  extends JpaRepository<Product> implements ProductService {
     @Override
     public Product findById(Integer id) {
-        return super.findByid(Product.class,id);
+        return super.findById(Product.class,id);
     }
 
     @Override
