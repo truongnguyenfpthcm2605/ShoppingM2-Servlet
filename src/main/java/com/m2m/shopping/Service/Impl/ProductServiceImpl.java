@@ -94,6 +94,17 @@ public class ProductServiceImpl  extends JpaRepository<Product> implements Produ
         return super.findManyPage(Product.class, sql,page,maxPage,GB );
     }
 
+    @Override
+    public List<Product> findByCategory(int categoryId) {
+        String sql = "Select o from Product o where o.categories.id = ?0 and o.isActive = 1";
+        return super.findMany(Product.class,sql, categoryId);
+    }
+
+    @Override
+    public List<Product> findTop10() {
+        String sql = "SELECT p FROM Product p WHERE p.isActive = 1 ORDER BY p.views DESC";
+        return super.findMany(Product.class, sql).subList(0, 10);
+    }
 
 
 

@@ -31,4 +31,8 @@ public interface ProductService {
     List<Product> findAllSortDate(int page, int maxPage);
 
     List<Product> findAllMemory(int page, int maxPage,Integer GB);
+
+    List<Product> findByCategory(int categoryId);
+
+    List<Product> findTop10();
 }
